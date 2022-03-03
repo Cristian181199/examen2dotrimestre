@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMonographRequest;
 use App\Http\Requests\UpdateMonographRequest;
+use App\Models\Article;
 use App\Models\Monograph;
 
 class MonographController extends Controller
@@ -105,5 +106,12 @@ class MonographController extends Controller
         }
 
         return redirect()->route('monographs.index')->with('error', 'This monograph has associated articles.');
+    }
+
+    public function monograph_authors(Monograph $monograph)
+    {
+        return view('monographs.monograph-authors', [
+            'monograph' => $monograph,
+        ]);
     }
 }

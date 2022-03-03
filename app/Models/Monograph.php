@@ -16,6 +16,6 @@ class Monograph extends Model
 
     public function articles()
     {
-        return $this->belongsToMany(Article::class);
+        return $this->belongsToMany(Article::class, 'article_monograph', 'monograph_id', 'article_id')->withPivot('monograph_id');
     }
 }

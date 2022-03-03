@@ -11,11 +11,11 @@ class Article extends Model
 
     public function authors()
     {
-        return $this->belongsToMany(Author::class);
+        return $this->belongsToMany(Author::class, 'article_author');
     }
 
     public function monographs()
     {
-        return $this->belongsToMany(Monograph::class);
+        return $this->belongsToMany(Monograph::class, 'article_monograph', 'article_id', 'monograph_id')->withPivot('monograph_id');
     }
 }
