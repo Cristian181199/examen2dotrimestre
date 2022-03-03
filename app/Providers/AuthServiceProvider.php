@@ -26,7 +26,9 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('see-monographs', function (User $user) {
-            return $user->name === 'admin';
+            return $user->name === 'admin'
+                ? Response::allow()
+                : Response::deny('No tiene permiso para entrar.');
         });
     }
 }
