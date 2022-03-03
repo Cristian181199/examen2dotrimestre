@@ -9,6 +9,11 @@ class Monograph extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'year',
+    ];
+
     public function articles()
     {
         return $this->belongsToMany(Article::class);

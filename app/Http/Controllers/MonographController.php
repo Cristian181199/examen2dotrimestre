@@ -27,7 +27,9 @@ class MonographController extends Controller
      */
     public function create()
     {
-        //
+        return view('monographs.create', [
+            'monograph' => new Monograph(),
+        ]);
     }
 
     /**
@@ -38,7 +40,11 @@ class MonographController extends Controller
      */
     public function store(StoreMonographRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $monograph = new Monograph($validated);
+        $monograph->save();
+
+        return redirect()->route('monographs.store')->with('success', 'Monograph created successfully!');
     }
 
     /**
@@ -62,7 +68,9 @@ class MonographController extends Controller
      */
     public function edit(Monograph $monograph)
     {
-        //
+        return view('monographs.edit', [
+            'monograph' => $monograph,
+        ]);
     }
 
     /**
@@ -74,7 +82,12 @@ class MonographController extends Controller
      */
     public function update(UpdateMonographRequest $request, Monograph $monograph)
     {
-        //
+        $validated = $request->validated();
+        $monograph->title = $validated['title'];
+        $monograph->year = $validated['year'];
+        $monograph->save();
+
+        return redirect()->route('monographs.index')->with('success', 'Monograph created successfully!');
     }
 
     /**
