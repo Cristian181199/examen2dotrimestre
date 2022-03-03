@@ -56,7 +56,8 @@ class MonographController extends Controller
     public function show(Monograph $monograph)
     {
         return view('monographs.show', [
-            'monograph' => $monograph,
+            //'monograph' => $monograph->with('articles')->withSum('articles', 'number_pages')->get(), creo que tambien funciona.
+            'monographwitharticles' => Monograph::where('id', '=', $monograph->id)->with('articles')->withSum('articles', 'number_pages')->get(),
         ]);
     }
 

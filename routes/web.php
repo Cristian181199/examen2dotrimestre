@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\MonographController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +23,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+// Ruta para las monografias
 Route::resource('monographs', MonographController::class)
-    ->middleware(['auth, can:see-monographs']);
+    ->middleware('can:see-monographs, auth');
+
+// Ruta para /articulos
+Route::get('/articles', [ArticleController::class, 'index'])
+    ->middleware('auth');
 
 require __DIR__.'/auth.php';
