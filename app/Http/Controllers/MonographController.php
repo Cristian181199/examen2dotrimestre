@@ -15,7 +15,9 @@ class MonographController extends Controller
      */
     public function index()
     {
-        //
+        return view('monographs.index', [
+            'monographs' => Monograph::all(),
+        ]);
     }
 
     /**
