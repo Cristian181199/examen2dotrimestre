@@ -23,6 +23,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::resource('monographs', MonographController::class)
-    ->middleware(['auth']);
+    ->middleware(['auth, can:see-monographs']);
 
 require __DIR__.'/auth.php';

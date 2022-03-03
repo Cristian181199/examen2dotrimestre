@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('see-monographs', function (User $user) {
+            return $user->name === 'admin';
+        });
     }
 }
